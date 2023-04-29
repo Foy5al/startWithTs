@@ -1,16 +1,15 @@
-import express, { Request, Response } from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import app from "./app";
 
-const app = express();
-const port = process.env.PORT || 8080;
+dotenv.config();
 
-app.get("/", (_req: Request, res: Response) => {
-  return res.send("Express Typescript on Vercel");
+//connection with database
+mongoose.connect(process.env.MONGODB_URI!).then(() => {
+  console.log(`BanglaHaat Server is connected with MongoDb`);
 });
-
-app.get("/ping", (_req: Request, res: Response) => {
-  return res.send("pong 🏓");
-});
+const port: number = parseInt(process.env.PORT || "8000");
 
 app.listen(port, () => {
-  return console.log(`Server is listening on ${port}`);
+  console.log(`BanglaHaat App is listening on port ${port}`);
 });
