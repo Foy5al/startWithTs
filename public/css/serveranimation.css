@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f2f2f2;
+  font-family: "Work Sans", sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.wrapper .card {
+  display: block;
+  margin: 10px auto;
+  padding: 15px 30px;
+  background-color: white;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  color: green;
+  text-align: center;
+  transition: border-color, color 250ms ease;
+  user-select: none;
+}
+
+.connection {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.connection span {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #ffcc00;
+  box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.connection[data-dir="vertical"] {
+  flex-direction: column;
+  height: 50px;
+}
+.connection[data-dir="vertical"] span {
+  margin-bottom: 5px;
+  animation-name: connection-vertical;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+}
+.connection[data-dir="horizontal"] {
+  flex-direction: row;
+  width: 50px;
+  height: 10px;
+}
+.connection[data-dir="horizontal"] span {
+  margin-right: 5px;
+  animation-name: connection-horizontal;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+}
+
+@keyframes connection-vertical {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translateY(10px);
+  }
+}
+@keyframes connection-horizontal {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translateX(10px);
+  }
+}
+.card#db {
+  animation: pulse 5s 0s infinite ease;
+}
+.card#server {
+  animation: pulse 5s 1s infinite ease;
+}
+.card#user {
+  animation: pulse 5s 2s infinite ease;
+}
+
+@keyframes pulse {
+  0% {
+    border-color: #ffcc00;
+    color: black;
+  }
+  20%,
+  100% {
+    border-color: #bbb;
+    color: #999;
+  }
+}
